@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A lightweight HTML5 page featuring an accessible realistic octopus arm image.">
+  <title>Realistic Octopus Arm</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0f172a;
+      --panel: #111827;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --focus: #facc15;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: radial-gradient(circle at top, #26345f 0, var(--bg) 42rem);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      z-index: 1;
+      padding: 0.75rem 1rem;
+      color: #111827;
+      background: var(--focus);
+      border-radius: 0.5rem;
+      transform: translateY(-150%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+      outline: 0.2rem solid #ffffff;
+      outline-offset: 0.15rem;
+    }
+
+    header,
+    main,
+    footer {
+      width: min(72rem, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    header {
+      padding: 4rem 0 2rem;
+    }
+
+    main {
+      padding-bottom: 3rem;
+    }
+
+    h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2.25rem, 6vw, 5rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    p {
+      max-width: 66ch;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.125rem;
+    }
+
+    figure {
+      margin: 0;
+      padding: clamp(1rem, 3vw, 2rem);
+      background: color-mix(in srgb, var(--panel), transparent 8%);
+      border: 1px solid rgb(255 255 255 / 0.14);
+      border-radius: 1.5rem;
+      box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 0.35);
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 1rem;
+    }
+
+    figcaption {
+      max-width: 70ch;
+      margin-top: 1rem;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 0 0 2rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header>
+    <h1>Realistic octopus arm</h1>
+    <p>A lightweight, accessible HTML5 page featuring a detailed octopus arm image with semantic markup and no JavaScript.</p>
+  </header>
+
+  <main id="main-content">
+    <figure>
+      <img
+        src="assets/images/realistic-octopus-arm.svg"
+        width="1200"
+        height="800"
+        alt="Realistic curved octopus arm with reddish purple textured skin and pale suction cups."
+      >
+      <figcaption>
+        A realistic octopus arm rendered as an optimized SVG asset, linked with explicit dimensions to reduce layout shift.
+      </figcaption>
+    </figure>
+  </main>
+
+  <footer>
+    <p>No external libraries or JavaScript are required for this page.</p>
+  </footer>
+</body>
+</html>
