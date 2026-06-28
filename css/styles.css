@@ -1,0 +1,366 @@
+:root {
+  --bg: #07080a;
+  --blood: #6f1831;
+  --blood-dark: #33111b;
+  --flesh: #8e6077;
+  --flesh-light: #caaabb;
+  --myelin: #c6bcc3;
+  --gloss: rgba(255, 255, 255, .18);
+  --shadow: rgba(0, 0, 0, .55);
+  --glow: rgba(255, 175, 205, .18);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html { min-height: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 2vw, 2rem);
+  color: #f8edf2;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(120, 20, 50, .08), transparent 40%),
+    linear-gradient(180deg, #050607, #0b0d10);
+  overflow: hidden;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 20;
+  transform: translateY(-160%);
+  border-radius: .75rem;
+  padding: .75rem 1rem;
+  color: #13080d;
+  background: #f8d7e5;
+  font-weight: 800;
+  transition: transform .2s ease;
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+:focus-visible {
+  outline: 3px solid #f8d7e5;
+  outline-offset: 4px;
+}
+
+.scene {
+  width: min(1200px, 96vw);
+  aspect-ratio: 16 / 10;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: clamp(1rem, 2vw, 1.75rem);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 200, 220, .03), transparent 24%),
+    radial-gradient(circle at 50% 50%, rgba(140, 20, 50, .06), transparent 45%),
+    linear-gradient(180deg, #07080a, #0b0d10);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .6), inset 0 0 100px rgba(0, 0, 0, .35);
+}
+
+.scene__intro {
+  position: relative;
+  z-index: 10;
+  max-width: 32rem;
+  padding: clamp(1rem, 3vw, 2rem);
+  pointer-events: none;
+}
+
+.eyebrow {
+  margin: 0 0 .35rem;
+  color: #e8b8ca;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 5.5rem);
+  line-height: .9;
+  text-wrap: balance;
+}
+
+.scene__summary {
+  max-width: 28rem;
+  margin: 1rem 0 0;
+  color: #d9c4cc;
+  font-size: clamp(.95rem, 1.5vw, 1.1rem);
+  line-height: 1.55;
+}
+
+.environment,
+.neuron {
+  position: absolute;
+  inset: 0;
+}
+
+.mist {
+  position: absolute;
+  width: 280px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(255, 220, 235, .035);
+  filter: blur(28px);
+  animation: drift 10s ease-in-out infinite alternate;
+}
+
+.mist-1 { left: 12%; top: 16%; }
+.mist-2 { right: 14%; top: 22%; animation-delay: -3s; }
+.mist-3 { left: 40%; bottom: 16%; animation-delay: -6s; }
+
+.soma {
+  position: absolute;
+  left: 42%;
+  top: 52%;
+  z-index: 5;
+  width: clamp(210px, 30vw, 340px);
+  aspect-ratio: 17 / 16;
+  transform: translate(-50%, -50%);
+}
+
+.soma-shell,
+.vascular-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 48% 52% 54% 46% / 44% 48% 52% 56%;
+  animation: somaPulse 5.6s ease-in-out infinite;
+}
+
+.soma-shell-outer {
+  background:
+    radial-gradient(circle at 30% 22%, rgba(255, 255, 255, .22), transparent 16%),
+    radial-gradient(circle at 60% 58%, rgba(255, 215, 229, .13), transparent 35%),
+    repeating-radial-gradient(ellipse at 48% 48%, rgba(255, 255, 255, .035) 0 2px, transparent 2px 9px),
+    linear-gradient(145deg, #c999ad, var(--flesh) 42%, var(--blood-dark));
+  box-shadow:
+    inset 0 0 30px rgba(255, 255, 255, .08),
+    inset 0 -30px 60px rgba(0, 0, 0, .24),
+    0 0 38px rgba(255, 145, 185, .08);
+  opacity: .95;
+}
+
+.soma-shell-inner {
+  inset: 8%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, .08), transparent 25%),
+    conic-gradient(from 20deg, transparent, rgba(255, 205, 224, .1), transparent, rgba(116, 23, 49, .2), transparent);
+  mix-blend-mode: screen;
+  opacity: .52;
+}
+
+.vascular-overlay {
+  background:
+    linear-gradient(30deg, transparent 44%, rgba(81, 9, 27, .38) 45% 47%, transparent 48%),
+    linear-gradient(120deg, transparent 52%, rgba(255, 210, 226, .13) 53% 54%, transparent 55%);
+  opacity: .5;
+}
+
+.eye-nucleus {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 47%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 28px rgba(255, 180, 210, .12), inset 0 0 18px rgba(255, 255, 255, .1), inset 0 -16px 26px rgba(0, 0, 0, .32);
+}
+
+.eye-iris,
+.eye-cornea,
+.eye-pupil,
+.eye-gloss { position: absolute; inset: 0; }
+
+.eye-iris {
+  background:
+    repeating-conic-gradient(from 8deg, #dcc4b7 0 4deg, #553245 4deg 8deg, #121014 8deg 10deg),
+    radial-gradient(circle, #a8707a 0 32%, #3a1b28 58%, #100b0f 100%);
+  transform: scale(1.04);
+}
+
+.eye-pupil {
+  width: 44%;
+  height: 44%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, #020202 60%, #0c0c0d 100%);
+  box-shadow: 0 0 18px rgba(0, 0, 0, .65);
+  animation: pupilDilate 5.6s ease-in-out infinite;
+}
+
+.eye-cornea {
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255, 255, 255, .25), transparent 18%),
+    radial-gradient(circle at 56% 62%, rgba(255, 255, 255, .08), transparent 14%);
+  mix-blend-mode: screen;
+}
+
+.eye-gloss::before {
+  content: "";
+  position: absolute;
+  width: 44%;
+  height: 18%;
+  left: 16%;
+  top: 16%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .18);
+  filter: blur(6px);
+  transform: rotate(-12deg);
+}
+
+.dendrites .tentacle {
+  position: absolute;
+  width: clamp(160px, 22vw, 260px);
+  height: clamp(36px, 5vw, 60px);
+  background:
+    radial-gradient(circle at 82% 50%, rgba(255,255,255,.13), transparent 18%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 5px, transparent 5px 16px),
+    linear-gradient(180deg, rgba(255,255,255,.08), transparent 30%),
+    linear-gradient(90deg, #3b101f, #995a72 52%, #c99dad);
+  box-shadow: inset 0 0 14px rgba(255, 255, 255, .06), 0 0 16px rgba(0, 0, 0, .18);
+  transform-origin: right center;
+  border-radius: 999px;
+  animation: tentacleTwitch 7s ease-in-out infinite;
+}
+
+.t1 { left: 10%; top: 30%; transform: rotate(-18deg); }
+.t2 { left: 8%; top: 44%; transform: rotate(8deg); animation-delay: -.8s; }
+.t3 { left: 16%; top: 58%; transform: rotate(28deg); animation-delay: -1.6s; }
+.t4 { left: 26%; top: 20%; transform: rotate(-44deg); animation-delay: -2.2s; }
+.t5 { left: 24%; top: 64%; transform: rotate(42deg); animation-delay: -3s; }
+.t6 { left: 30%; top: 12%; transform: rotate(-68deg); animation-delay: -4s; }
+
+.axon {
+  position: absolute;
+  left: 52%;
+  top: 52%;
+  z-index: 4;
+  width: clamp(280px, 39vw, 460px);
+  height: 80px;
+  transform: translateY(-50%);
+}
+
+.axon-core {
+  position: absolute;
+  left: 0;
+  top: 32px;
+  width: 100%;
+  height: 16px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .1), transparent 26%), linear-gradient(90deg, #2d101b, #7a314d, #2d101b);
+}
+
+.myelin {
+  position: absolute;
+  top: 20px;
+  width: 19%;
+  height: 40px;
+  border-radius: 24px;
+  background: linear-gradient(160deg, rgba(255,255,255,.24), transparent 30%), linear-gradient(90deg, #8f828a, var(--myelin), #6f6068);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, .08);
+}
+
+.m1 { left: 6%; }
+.m2 { left: 30%; }
+.m3 { left: 54%; }
+.m4 { left: 78%; }
+
+.node {
+  position: absolute;
+  top: 24px;
+  width: 18px;
+  height: 32px;
+  border-radius: 10px;
+  background: rgba(25, 13, 18, .92);
+  box-shadow: 0 0 0 rgba(255, 180, 210, 0);
+  animation: nodeFlash 3.8s linear infinite;
+}
+
+.n1 { left: 26%; animation-delay: .6s; }
+.n2 { left: 50%; animation-delay: 1.4s; }
+.n3 { left: 74%; animation-delay: 2.2s; }
+
+.signal {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, .4), transparent 14%), radial-gradient(circle, rgba(255, 210, 225, .85), rgba(182, 62, 106, .78));
+  box-shadow: 0 0 22px rgba(255, 180, 210, .22);
+  opacity: 0;
+  animation: signalTravel 3.8s cubic-bezier(.55, .1, .32, .96) infinite;
+}
+
+.ion {
+  position: absolute;
+  border-radius: 999px;
+  padding: 6px 8px;
+  color: #f7e7ee;
+  font: 700 11px/1 sans-serif;
+  opacity: 0;
+}
+
+.na { background: rgba(236, 190, 210, .78); color: #241117; animation: ionIn 3.8s linear infinite; }
+.k { background: rgba(102, 28, 50, .88); animation: ionOut 3.8s linear infinite; }
+.na1 { left: 56%; top: 38%; animation-delay: .5s; }
+.na2 { left: 67%; top: 36%; animation-delay: 1.5s; }
+.k1 { left: 58%; top: 57%; animation-delay: 1s; }
+.k2 { left: 69%; top: 56%; animation-delay: 2s; }
+
+.particle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 220, 235, .45);
+  filter: blur(.4px);
+  animation: driftParticle 8s linear infinite;
+}
+
+.p1 { left: 34%; top: 28%; }
+.p2 { left: 45%; top: 70%; animation-delay: -2s; }
+.p3 { left: 74%; top: 42%; animation-delay: -4s; }
+.p4 { left: 26%; top: 54%; animation-delay: -6s; }
+
+@keyframes somaPulse { 0%, 100% { transform: scale(.985); } 50% { transform: scale(1.02); } }
+@keyframes pupilDilate { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.08); } }
+@keyframes tentacleTwitch { 0%, 100% { filter: brightness(.95); } 50% { filter: brightness(1.05); } }
+@keyframes signalTravel { 0%, 18% { opacity: 0; transform: translateX(-10px) scale(.55); } 22% { opacity: 1; transform: translateX(0) scale(.85); } 45% { opacity: 1; transform: translateX(33%) scale(1); } 68% { opacity: 1; transform: translateX(61%) scale(1); } 82% { opacity: 1; transform: translateX(87%) scale(.95); } 100% { opacity: 0; transform: translateX(94%) scale(.55); } }
+@keyframes nodeFlash { 0%, 25%, 100% { box-shadow: 0 0 0 rgba(255, 180, 210, 0); } 32%, 40% { box-shadow: 0 0 18px rgba(255, 180, 210, .28); } }
+@keyframes ionIn { 0%, 20%, 100% { opacity: 0; transform: translateY(-8px); } 30%, 42% { opacity: 1; transform: translateY(14px); } }
+@keyframes ionOut { 0%, 40%, 100% { opacity: 0; transform: translateY(8px); } 50%, 62% { opacity: 1; transform: translateY(-14px); } }
+@keyframes driftParticle { 0% { transform: translate(0, 0) scale(.7); opacity: .08; } 50% { transform: translate(10px, -24px) scale(1); opacity: .28; } 100% { transform: translate(-6px, -48px) scale(.5); opacity: .04; } }
+@keyframes drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(18px, -8px) scale(1.06); } }
+
+@media (max-width: 720px) {
+  body { align-items: start; overflow: auto; }
+  .scene { min-height: 720px; aspect-ratio: auto; }
+  .scene__summary { max-width: 20rem; }
+  .soma { left: 46%; top: 56%; }
+  .axon { left: 44%; top: 72%; transform: scale(.82); transform-origin: left center; }
+  .dendrites .tentacle { opacity: .9; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .001ms !important;
+  }
+}
